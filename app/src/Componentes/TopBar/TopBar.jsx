@@ -4,6 +4,7 @@ import BaseButton from "../buttons/BaseButton";
 import BuscarPokemon from "../../Paginas/BuscarPokemones/BuscarPokemon";
 import VerPokemones from "../../Paginas/VerPokemones/VerPokemones";
 import Inicio from "../../Paginas/Inicio/Inicio";
+import { useEffect } from "react";
 
 
 const MENU= [
@@ -25,9 +26,9 @@ const TopBar= (props) =>{
 
 
 
-    const func = () => {
-        console.log('botoncito presionadito')
-    }
+    useEffect (() => {
+        props.setPaginaActual(<Inicio />);
+    }, [])
 
     return (        
         <nav class="navbar bg-body-tertiary">
@@ -37,7 +38,7 @@ const TopBar= (props) =>{
                     {
                         MENU.map((item) => {
                             return (
-                                <BaseButton className="menu-button" text={item.titulo} callBack={props.setPaginaActual} params={item.pagina}/>
+                                <BaseButton class="btn btn-primary menu-button" text={item.titulo} callBack={props.setPaginaActual} params={item.pagina}/>
                             );
                         })
                     }
