@@ -1,7 +1,9 @@
+import "./TopBar.css"
+
 import BaseButton from "../buttons/BaseButton";
-import Inicio from "../../Paginas/Inicio";
-import BuscarPokemon from "../../Paginas/BuscarPokemones";
+import BuscarPokemon from "../../Paginas/BuscarPokemones/BuscarPokemon";
 import VerPokemones from "../../Paginas/VerPokemones/VerPokemones";
+import Inicio from "../../Paginas/Inicio/Inicio";
 
 
 const MENU= [
@@ -35,7 +37,7 @@ const TopBar= (props) =>{
                     {
                         MENU.map((item) => {
                             return (
-                                <BaseButton text={item.titulo} callBack={props.setPaginaActual} params={item.pagina}/>
+                                <BaseButton className="menu-button" text={item.titulo} callBack={props.setPaginaActual} params={item.pagina}/>
                             );
                         })
                     }
