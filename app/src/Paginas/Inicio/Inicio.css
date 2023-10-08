@@ -1,0 +1,10 @@
+
+.bienvenida {
+    background-color: #0f3f4f; /* Color celeste */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto al centro */
+}
+
+h1 {
+    color: rgb(246, 239, 239); /* Color del texto en blanco */
+}

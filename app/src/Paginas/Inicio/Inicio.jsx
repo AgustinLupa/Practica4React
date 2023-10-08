@@ -1,9 +1,18 @@
+import "./Inicio.css"
+
 const Inicio = (props) =>{
 
+
+
     return (
-        <>
-                <h1> bien venido a buscar poke </h1>
-        </>
+    <>
+
+        <div class="card">
+            <div class="card-body bienvenida">
+                 <h1> bienvenido a buscar poke </h1> 
+            </div>
+        </div>
+   </>
     )
 
 }
