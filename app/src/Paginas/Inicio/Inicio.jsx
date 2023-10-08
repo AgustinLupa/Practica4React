@@ -1,0 +1,4 @@
+const Inicio = (props) =>{
+
+    
+}
