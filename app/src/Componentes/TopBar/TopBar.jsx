@@ -31,22 +31,15 @@ const TopBar= (props) =>{
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1">PokeBusca</span>
-                {
-                    MENU.map((item) => {
-                        return (
-                            <BaseButton text={item.titulo} callBack={props.setPaginaActual(item.pagina)}/>
-                        );
-                    })
-                }
                 <div>
-                    <BaseButton text="Inicio" callBack={props.setPaginaActual}/>
-                </div>
-                <div>
-                    <BaseButton text="Buscar Pokemon" callBack={func}/>
-                </div>
-                <div>
-                    <BaseButton text="Ver Pokemones de Fuego" callBack={func}/>
-                </div>
+                    {
+                        MENU.map((item) => {
+                            return (
+                                <BaseButton text={item.titulo} callBack={props.setPaginaActual} params={item.pagina}/>
+                            );
+                        })
+                    }
+                </div>                
             </div>
         </nav>
     )
