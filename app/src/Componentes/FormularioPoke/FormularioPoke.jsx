@@ -1,4 +1,4 @@
-import BaseButton from "../buttons/BaseButton"
+import BaseButton from "../buttons/BaseButton";
 
 const FormularioPoke = (props)=>{
     return (
