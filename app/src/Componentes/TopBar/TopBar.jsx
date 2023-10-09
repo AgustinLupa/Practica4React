@@ -24,8 +24,6 @@ const MENU= [
 
 const TopBar= (props) =>{
 
-
-
     useEffect (() => {
         props.setPaginaActual(<Inicio />);
     }, [])

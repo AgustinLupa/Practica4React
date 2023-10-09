@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormularioPoke from "../../Componentes/FormularioPoke/FormularioPoke";
 import "./Inicio.css"
+import { LogIn } from "../../Servicios/Login";
 
 const Inicio = (props) =>{
 
@@ -8,6 +9,11 @@ const Inicio = (props) =>{
 
     const HandleOnChange = (e) => {
         console.log(e.target.value);
+    }
+
+    const HandleSubmit = async (e) => {
+        e.preventDefault();
+        await LogIn(formData);
     }
 
     return (
@@ -35,7 +41,7 @@ const Inicio = (props) =>{
                         </div>
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Log in</button>
+                        <button onClick={HandleSubmit} class="btn btn-primary">Log in</button>
                     </div>
                 </form>
             </div>
