@@ -12,6 +12,12 @@ const Inicio = (props) =>{
                  <h1> bienvenido a buscar poke </h1> 
             </div>
         </div>
+        <br />
+        <div class="card">
+            <div class="card-body">
+                 
+            </div>
+        </div>
    </>
     )
 

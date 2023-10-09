@@ -17,7 +17,7 @@ const FormularioPoke = (props)=>{
                 </div>
             </div>
             <div class="col-12">
-                <BaseButton text="Buscar Pokemon" callback={props.BuscarPokemon}></BaseButton>
+                <BaseButton text={props.text} callback={props.funcion}></BaseButton>
             </div>
         </form>
     )

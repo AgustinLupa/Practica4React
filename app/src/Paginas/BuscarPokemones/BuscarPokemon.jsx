@@ -5,7 +5,7 @@ const BuscarPokemon= (props)=> {
         <>
             <div class="card">
                 <div class="card-body align-content-center">
-                    { <FormularioPoke />}
+                    { <FormularioPoke text="Buscar Pokemon" funcion={ null } />}
                 </div>
             </div>
         </>
