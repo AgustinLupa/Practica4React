@@ -1,4 +1,4 @@
-import { GET } from "./Httpr";
+import { GET } from "./PokeApi";
 
 export async function BuscarPoke(poke) {
     let uri= "pokemon/"+poke;
