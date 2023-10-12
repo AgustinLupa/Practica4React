@@ -40,7 +40,7 @@ const Inicio = (props) => {
       <div className="card">
         <div className="card-body">
           <form className="row g-3">
-            <small>De momento no hace nada esto</small>
+            
             <br />
             <div className="row mb-3">
               <label htmlFor="user_name" className="col-sm-2 col-form-label">
