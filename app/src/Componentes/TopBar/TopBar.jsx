@@ -4,7 +4,8 @@ import BaseButton from "../buttons/BaseButton";
 import BuscarPokemon from "../../Paginas/BuscarPokemones/BuscarPokemon";
 import VerPokemones from "../../Paginas/VerPokemones/VerPokemones";
 import Inicio from "../../Paginas/Inicio/Inicio";
-import { useEffect } from "react";
+import Usuarios from "../../Paginas/Usuarios/Usuarios";
+import React, { useState, useEffect } from 'react';
 
 
 const TopBar= (props) =>{
@@ -23,7 +24,11 @@ const TopBar= (props) =>{
         {
             pagina: <VerPokemones />,
             titulo: "Ver Pokemones de Fuego"
-        }
+        },
+        {
+            pagina: <Usuarios />,
+            titulo: "Usuarios"
+        },
     ]
 
     useEffect (() => {
