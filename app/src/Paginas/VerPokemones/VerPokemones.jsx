@@ -1,8 +1,16 @@
+import { useEffect } from "react";
 import { listarPokemonesFuego } from "../../Servicios/ListarFuego";
+
+let request= await listarPokemonesFuego();
 
 const VerPokemones = (props)  => {
 
-    const pokemones= listarPokemonesFuego();
+    
+
+    // useEffect(() => {
+    //     request= listarPokemonesFuego();        
+    //     console.log(request);
+    // }, [])
 
     return (
         <>
@@ -13,13 +21,14 @@ const VerPokemones = (props)  => {
                     <br />
                     <ul class="list-group card-text">
                         {
-                            //Aca iria un foreach de los pokemones
+                            request.pokemon.map( (item) => {
+                                return(
+                                    <>
+                                        <li class="list-group-item">{item.pokemon.name}</li>
+                                    </>
+                                );
+                            })
                         }
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                        <li class="list-group-item">A fourth item</li>
-                        <li class="list-group-item">And a fifth one</li>
                     </ul>
                 </div>
             </div>

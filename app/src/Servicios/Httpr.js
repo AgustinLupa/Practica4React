@@ -2,7 +2,7 @@ const Apiurl= " https://pokeapi.co/api/v2/";
 
 export async function GET(url){
     return await fetch(Apiurl + url.toLowerCase(), {
-        method: 'POST',
+        method: 'GET',
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json'
