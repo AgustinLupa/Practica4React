@@ -4,7 +4,7 @@ import BaseButton from "../buttons/BaseButton";
 import BuscarPokemon from "../../Paginas/BuscarPokemones/BuscarPokemon";
 import VerPokemones from "../../Paginas/VerPokemones/VerPokemones";
 import Inicio from "../../Paginas/Inicio/Inicio";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
 const TopBar= (props) =>{
