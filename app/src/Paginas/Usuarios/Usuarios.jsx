@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Usuarios.css';
+import { obtenerUsuarios } from '../../Servicios/Usuarios';
 
 const Usuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
-  const [nuevoUsuario, setNuevoUsuario] = useState({ nombre: '', contraseña: '' }); // Cambié 'email' a 'contraseña'
+  const [nuevoUsuario, setNuevoUsuario] = useState({ nombre: '', contraseña: '' });
   const [busqueda, setBusqueda] = useState('');
   const [resultadoBusqueda, setResultadoBusqueda] = useState([]);
+
+  useEffect(() => {
+    async function fetchUsuarios() {
+      try {
+        const data = await obtenerUsuarios();
+        setUsuarios(data);
+      } catch (error) {
+        console.error('Error al cargar los usuarios', error);
+      }
+    }
+
+    fetchUsuarios();
+  }, []);
 
   const handleCrearUsuario = (e) => {
     e.preventDefault();
     setUsuarios([...usuarios, nuevoUsuario]);
-    setNuevoUsuario({ nombre: '', contraseña: '' }); // Cambié 'email' a 'contraseña'
+    setNuevoUsuario({ nombre: '', contraseña: '' });
   };
 
   const handleBuscarUsuarios = () => {
@@ -33,7 +47,6 @@ const Usuarios = () => {
               type="text"
               value={nuevoUsuario.nombre}
               onChange={(e) => setNuevoUsuario({ ...nuevoUsuario, nombre: e.target.value })}
-              class="col-sm-8 col-form-label"
             />
           </label>
         </div>
@@ -44,29 +57,42 @@ const Usuarios = () => {
               type="password"
               value={nuevoUsuario.contraseña}
               onChange={(e) => setNuevoUsuario({ ...nuevoUsuario, contraseña: e.target.value })}
-              class="col-sm-8 col-form-label"
             />
           </label>
         </div>
-        <button type="submit" className="btn btn-primary">Crear</button>
+        <button type="submit" className="btn btn-primary">
+          Crear
+        </button>
       </form>
 
       <h2 className="buscar-usuario">Buscar Usuarios</h2>
-      <div className="inputnpm-container">
+      <div className="input-container">
         <input
           type="text"
           placeholder="Buscar por nombre"
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
-          class="col-sm-2 col-form-label"
         />
+        <button onClick={handleBuscarUsuarios} className="btn btn-primary">
+          Buscar
+        </button>
       </div>
-      <button onClick={handleBuscarUsuarios} className="btn btn-primary">Buscar</button>
 
       <h3>Resultados de la Búsqueda</h3>
       <ul className="resultados-busqueda">
         {resultadoBusqueda.map((usuario) => (
-          <li key={usuario.contraseña}>{usuario.nombre} - {usuario.contraseña}</li>
+          <li key={usuario.id}>
+            Nombre: {usuario.nombre}, Contraseña: {usuario.contraseña}
+          </li>
+        ))}
+      </ul>
+
+      <h3>Lista de Usuarios</h3>
+      <ul className="usuarios-list">
+        {usuarios.map((usuario) => (
+          <li key={usuario.id}>
+            Nombre: {usuario.nombre}, Contraseña: {usuario.contraseña}
+          </li>
         ))}
       </ul>
     </div>
