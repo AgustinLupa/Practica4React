@@ -19,7 +19,7 @@ export async function GET(url, request= null, token){
     .catch((err) => err);
 }
 
-export async function POST(url, request, token){
+export async function POST(url, request, token= ''){
 
     return await fetch (apiurl + url, {
         method: 'POST',
@@ -29,6 +29,9 @@ export async function POST(url, request, token){
             'Authorization': `Bearer ${token}` || ''
         },
         body: JSON.stringify(request)
-    });
+    })
+    .then((res) => res.json())
+    .then((res) => res)
+    .catch((err) => err);
 
 }
