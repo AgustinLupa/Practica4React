@@ -7,22 +7,24 @@ import Inicio from "../../Paginas/Inicio/Inicio";
 import { useEffect } from "react";
 
 
-const MENU= [
-    {
-        pagina: <Inicio />,
-        titulo: "Inicio"
-    },
-    {
-        pagina: <BuscarPokemon />,
-        titulo: "Buscar Pokemon"
-    },
-    {
-        pagina: <VerPokemones />,
-        titulo: "Ver Pokemones de Fuego"
-    }
-]
-
 const TopBar= (props) =>{
+
+    const [token, setToken]= useState({});
+
+    const MENU= [
+        {
+            pagina: <Inicio setToken={setToken}/>,
+            titulo: "Inicio"
+        },
+        {
+            pagina: <BuscarPokemon />,
+            titulo: "Buscar Pokemon"
+        },
+        {
+            pagina: <VerPokemones />,
+            titulo: "Ver Pokemones de Fuego"
+        }
+    ]
 
     useEffect (() => {
         props.setPaginaActual(<Inicio />);

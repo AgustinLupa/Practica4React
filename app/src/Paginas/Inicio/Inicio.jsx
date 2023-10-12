@@ -7,13 +7,15 @@ const Inicio = (props) =>{
 
     const [formData, setFormData]= useState({});
 
+
+
     const HandleOnChange = (e) => {
         console.log(e.target.value);
     }
 
     const HandleSubmit = async (e) => {
         e.preventDefault();
-        await LogIn(formData);
+        props.setToken(await LogIn(formData));
     }
 
     return (

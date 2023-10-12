@@ -19,7 +19,7 @@ export async function GET(url, request= null, token){
     .catch((err) => err);
 }
 
-export async function POST(url, request, token){
+export async function POST(url, request, token= ''){
 
     return await fetch (apiurl + url, {
         method: 'POST',

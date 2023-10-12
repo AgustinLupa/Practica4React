@@ -1,7 +1,5 @@
 import { POST } from "./Httpr";
 
-const ApiUrl= "http://192.168.0.133:3001/api/";
-
 export const LogIn= async (data) => {
     // console.log(data);
     // return await fetch(ApiUrl + "auth/login", {
