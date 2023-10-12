@@ -1,20 +1,24 @@
-import { POST } from "./Httpr";
-
-export const LogIn= async (data) => {
-    // console.log(data);
-    // return await fetch(ApiUrl + "auth/login", {
-    //     method: 'POST',
-    //     mode: 'cors',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(data)
-    // }).then((res) => res.json())
-    //     .then((res) => console.log(res));
-
-    let uri= "auth/login";
-
-    let resp= await POST(uri, data);
-
-    return resp;
-}
+export async function authenticateUser(username, password) {
+    try {
+      const response = await fetch('http://localhost:3001/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        const token = data.token;
+        return token;
+      } else {
+        console.error('Error en el inicio de sesión');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error en el inicio de sesión:', error);
+      return null;
+    }
+  }
+  

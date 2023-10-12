@@ -1,57 +1,87 @@
-import { useState } from "react";
-import FormularioPoke from "../../Componentes/FormularioPoke/FormularioPoke";
-import "./Inicio.css"
-import { LogIn } from "../../Servicios/Login";
-
-const Inicio = (props) =>{
-
-    const [formData, setFormData]= useState({});
+import React, { useState } from "react";
+import { authenticateUser } from "../../Servicios/Login";
 
 
 
-    const HandleOnChange = (e) => {
-        console.log(e.target.value);
+
+const Inicio = (props) => {
+  const [formData, setFormData] = useState({
+    user_name: '',
+    password: '',
+  });
+
+  const HandleOnChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const HandleSubmit = async (e) => {
+    e.preventDefault();
+    const token = await authenticateUser(formData.user_name, formData.password);
+    if (token) {
+      props.setToken(token);
+      
     }
+    
+  };
 
-    const HandleSubmit = async (e) => {
-        e.preventDefault();
-        props.setToken(await LogIn(formData));
-    }
-
-    return (
+  return (
     <>
-        <div class="card">
-            <div class="card-body bienvenida">
-                 <h1> bienvenido a buscar poke </h1> 
-            </div>
+      <div className="card">
+        <div className="card-body bienvenida">
+          <h1>Bienvenido a buscar poke</h1>
+        
         </div>
-        <br />
-        <div class="card">
-            <div class="card-body">
-                <form class="row g-3">
-                    <small>De momento no hace nada esto</small>
-                    
-                    <br />
-                    <div class="row mb-3">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
-                        <div class="col-sm-10">
-                            <input onChange={(e) => setFormData({...formData, user_name:e.target.value})} type="text" class="form-control" id="user_name" />
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input onChange={(e) => setFormData({...formData, password:e.target.value})} type="password" class="form-control" id="inputPassword3" />
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <button onClick={HandleSubmit} class="btn btn-primary">Log in</button>
-                    </div>
-                </form>
+      </div>
+      <br />
+      <div className="card">
+        <div className="card-body">
+          <form className="row g-3">
+            <small>De momento no hace nada esto</small>
+            <br />
+            <div className="row mb-3">
+              <label htmlFor="user_name" className="col-sm-2 col-form-label">
+                Usuario
+              </label>
+              <div className="col-sm-10">
+                <input
+                  onChange={HandleOnChange}
+                  type="text"
+                  className="form-control"
+                  id="user_name"
+                  name="user_name"
+                  value={formData.user_name}
+                />
+              </div>
             </div>
+            <div className="row mb-3">
+              <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">
+                Contraseña
+              </label>
+              <div className="col-sm-10">
+                <input
+                  onChange={HandleOnChange}
+                  type="password"
+                  className="form-control"
+                  id="inputPassword3"
+                  name="password"
+                  value={formData.password}
+                />
+              </div>
+            </div>
+            <div className="col-12">
+              <button onClick={HandleSubmit} className="btn btn-primary">
+                Iniciar Sesión
+              </button>
+            </div>
+          </form>
         </div>
-   </>
-    )
-}
+      </div>
+    </>
+  );
+};
 
 export default Inicio;

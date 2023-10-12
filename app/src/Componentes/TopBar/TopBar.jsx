@@ -4,13 +4,14 @@ import BuscarPokemon from '../../Paginas/BuscarPokemones/BuscarPokemon';
 import VerPokemones from '../../Paginas/VerPokemones/VerPokemones';
 import Inicio from '../../Paginas/Inicio/Inicio';
 import Usuarios from '../../Paginas/Usuarios/Usuarios';
+import Login from '../Login/Login';
 
 const TopBar = (props) => {
   const [token, setToken] = useState({});
 
   const MENU = [
     {
-      pagina: <Inicio setToken={setToken} />,
+      pagina: <Inicio setToken={setToken} />, // Asegúrate de pasar setToken correctamente
       titulo: 'Inicio',
     },
     {
@@ -28,7 +29,7 @@ const TopBar = (props) => {
   ];
 
   useEffect(() => {
-    props.setPaginaActual(<Inicio />);
+    props.setPaginaActual(<Inicio setToken={setToken} />); // Asegúrate de pasar setToken correctamente
   }, []);
 
   return (
@@ -38,8 +39,8 @@ const TopBar = (props) => {
         <div>
           {MENU.map((item, index) => (
             <BaseButton
-              key={index} // Agrega una key única para cada elemento
-              className="btn btn-primary menu-button" 
+              key={index}
+              className="btn btn-primary menu-button"
               text={item.titulo}
               callBack={props.setPaginaActual}
               params={item.pagina}
