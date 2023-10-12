@@ -29,6 +29,9 @@ export async function POST(url, request, token){
             'Authorization': `Bearer ${token}` || ''
         },
         body: JSON.stringify(request)
-    });
+    })
+    .then((res) => res.json())
+    .then((res) => res)
+    .catch((err) => err);
 
 }
