@@ -4,7 +4,7 @@ import { obtenerUsuarios } from '../../Servicios/Usuarios';
 
 const Usuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
-  const [nuevoUsuario, setNuevoUsuario] = useState({ nombre: '', contraseña: '' });
+  const [nuevoUsuario, setNuevoUsuario] = useState({ name: '', username: '' });
   const [busqueda, setBusqueda] = useState('');
   const [resultadoBusqueda, setResultadoBusqueda] = useState([]);
 
@@ -23,13 +23,14 @@ const Usuarios = () => {
 
   const handleCrearUsuario = (e) => {
     e.preventDefault();
-    setUsuarios([...usuarios, nuevoUsuario]);
-    setNuevoUsuario({ nombre: '', contraseña: '' });
+    
+    setUsuarios([...usuarios, { name: nuevoUsuario.name, username: nuevoUsuario.username }]);
+    setNuevoUsuario({ name: '', username: '' });
   };
 
   const handleBuscarUsuarios = () => {
     const resultados = usuarios.filter((usuario) =>
-      usuario.nombre.toLowerCase().includes(busqueda.toLowerCase())
+      usuario.name.toLowerCase().includes(busqueda.toLowerCase()) 
     );
     setResultadoBusqueda(resultados);
   };
@@ -41,22 +42,24 @@ const Usuarios = () => {
       <h2 className="crear-usuario">Crear Usuario</h2>
       <form onSubmit={handleCrearUsuario}>
         <div className="input-container">
-          <label>
+          <label htmlFor="nombre">
             Nombre:
             <input
               type="text"
-              value={nuevoUsuario.nombre}
-              onChange={(e) => setNuevoUsuario({ ...nuevoUsuario, nombre: e.target.value })}
+              id="nombre"
+              value={nuevoUsuario.name} 
+              onChange={(e) => setNuevoUsuario({ ...nuevoUsuario, name: e.target.value })} 
             />
           </label>
         </div>
         <div className="usuario-container">
-          <label>
-            Contraseña:
+          <label htmlFor="contraseña">
+            Nombre de usuario:
             <input
-              type="password"
-              value={nuevoUsuario.contraseña}
-              onChange={(e) => setNuevoUsuario({ ...nuevoUsuario, contraseña: e.target.value })}
+              type="text"
+              id="username"
+              value={nuevoUsuario.username} // Adaptar a la propiedad 'username' de la API
+              onChange={(e) => setNuevoUsuario({ ...nuevoUsuario, username: e.target.value })} // Adaptar a 'username'
             />
           </label>
         </div>
@@ -82,7 +85,7 @@ const Usuarios = () => {
       <ul className="resultados-busqueda">
         {resultadoBusqueda.map((usuario) => (
           <li key={usuario.id}>
-            Nombre: {usuario.nombre}, Contraseña: {usuario.contraseña}
+            Nombre: {usuario.name}, Nombre de usuario: {usuario.username}
           </li>
         ))}
       </ul>
@@ -91,7 +94,7 @@ const Usuarios = () => {
       <ul className="usuarios-list">
         {usuarios.map((usuario) => (
           <li key={usuario.id}>
-            Nombre: {usuario.nombre}, Contraseña: {usuario.contraseña}
+            Nombre: {usuario.name}, Nombre de usuario: {usuario.username}
           </li>
         ))}
       </ul>
