@@ -26,8 +26,10 @@ const Inicio = (props) =>{
         <br />
         <div class="card">
             <div class="card-body">
-                <br />
                 <form class="row g-3">
+                    <small>De momento no hace nada esto</small>
+                    
+                    <br />
                     <div class="row mb-3">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
                         <div class="col-sm-10">

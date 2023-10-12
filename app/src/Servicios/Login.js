@@ -1,6 +1,8 @@
+const ApiUrl= "http://192.168.0.133:3001/api/";
+
 export const LogIn= async (data) => {
     console.log(data);
-    return await fetch("http://192.168.0.69:3001/api/auth/login", {
+    return await fetch(ApiUrl + "auth/login", {
         method: 'POST',
         mode: 'cors',
         headers: {
