@@ -1,4 +1,4 @@
-const apiurl = "http://192.168.0.133:3001/api/";
+const apiurl = "http://192.168.0.144:3001/api/";
 
 export async function GET(url, request= null, token){
     

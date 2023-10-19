@@ -10,7 +10,7 @@ export const Create=async (data , token) => {
 
 }
 
-export const Search=async (data,token) =>{
+export const Search=async (user_name, page,token) =>{
 
     let uri = "user/search";
 

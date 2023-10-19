@@ -8,6 +8,8 @@ const Inicio = (props) => {
     password: '',
   });
 
+ 
+
   const HandleOnChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -28,8 +30,11 @@ const Inicio = (props) => {
       if (token) {
         props.setToken(token);
 
-        const userInfo = await getUserInfo(token);
-        console.log('Información del usuario:', userInfo);
+        props.setIsLoggedIn(true);
+
+        // const userInfo = await getUserInfo(token.access_token);
+        // console.log('Información del usuario:', userInfo);
+        props.setPagina(1);
       }
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
@@ -44,7 +49,7 @@ const Inicio = (props) => {
         </div>
       </div>
       <br />
-      <div className="card">
+      <div className="card py-2">
         <div className="card-body">
           <form className="row g-3">
             <br />
