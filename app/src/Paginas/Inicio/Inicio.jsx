@@ -20,7 +20,10 @@ const Inicio = (props) => {
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Iniciar Sesión clickeado"); // Para verificar que la función se ejecuta
+    console.log("Credenciales:", formData.user_name, formData.password); // Para verificar las credenciales
     const token = await authenticateUser(formData.user_name, formData.password);
+    console.log("Token recibido:", token); // Para verificar si se recibe un token
     if (token) {
       props.setToken(token);
       
