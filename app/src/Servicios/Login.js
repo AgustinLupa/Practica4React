@@ -21,4 +21,26 @@ export async function authenticateUser(username, password) {
       return null;
     }
   }
+
+  export async function getUserInfo(token) {
+    try {
+      const response = await fetch('http://localhost:3001/auth/me', {
+        method: 'GET',
+        headers: {
+          'Authorization': token,
+        },
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        console.error('Error al obtener información del usuario');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error al obtener información del usuario:', error);
+      return null;
+    }
+  }
   
