@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { authenticateUser } from "../../Servicios/Login";
-
-
-
+import { authenticateUser } from "../../Servicios/Login"; 
+import { getUserInfo } from "../../Servicios/Login"; 
 
 const Inicio = (props) => {
   const [formData, setFormData] = useState({
@@ -20,12 +18,22 @@ const Inicio = (props) => {
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
-    const token = await authenticateUser(formData.user_name, formData.password);
-    if (token) {
-      props.setToken(token);
-      
+    console.log("Iniciar Sesión clickeado");
+    console.log("Credenciales:", formData.user_name, formData.password);
+
+    try {
+      const token = await authenticateUser(formData.user_name, formData.password);
+      console.log("Token recibido:", token);
+
+      if (token) {
+        props.setToken(token);
+
+        const userInfo = await getUserInfo(token);
+        console.log('Información del usuario:', userInfo);
+      }
+    } catch (error) {
+      console.error('Error en el inicio de sesión:', error);
     }
-    
   };
 
   return (
@@ -33,14 +41,12 @@ const Inicio = (props) => {
       <div className="card">
         <div className="card-body bienvenida">
           <h1>Bienvenido a buscar poke</h1>
-        
         </div>
       </div>
       <br />
       <div className="card">
         <div className="card-body">
           <form className="row g-3">
-            
             <br />
             <div className="row mb-3">
               <label htmlFor="user_name" className="col-sm-2 col-form-label">
