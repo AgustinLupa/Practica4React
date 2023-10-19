@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Usuarios.css';
 import { obtenerUsuarios } from '../../Servicios/Usuarios';
+import { Search } from '../../Servicios/User';
 
 const Usuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -11,7 +12,7 @@ const Usuarios = () => {
   useEffect(() => {
     async function fetchUsuarios() {
       try {
-        const data = await obtenerUsuarios();
+        const data = await Search();
         setUsuarios(data);
       } catch (error) {
         console.error('Error al cargar los usuarios', error);
@@ -24,7 +25,7 @@ const Usuarios = () => {
   const handleCrearUsuario = (e) => {
     e.preventDefault();
     
-    setUsuarios([...usuarios, { name: nuevoUsuario.name, username: nuevoUsuario.username }]);
+    //setUsuarios([...usuarios, { name: nuevoUsuario.name, username: nuevoUsuario.username }]);
     setNuevoUsuario({ name: '', username: '' });
   };
 

@@ -1,4 +1,4 @@
-import { POST } from "./Httpr";
+import { GET, POST } from "./Httpr";
 
 export const Create=async (data , token) => {
 
@@ -12,9 +12,11 @@ export const Create=async (data , token) => {
 
 export const Search=async (user_name, page,token) =>{
 
-    let uri = "user/search";
+    const uri = "user/search";
 
-    let resp = await GET (uri,data,token);
+    let data= 'user_name='+user_name+'&page='+page;
+
+    let resp = await GET(uri,data,token);
 
     return resp;
 }
