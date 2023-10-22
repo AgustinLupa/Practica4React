@@ -32,8 +32,8 @@ const Inicio = (props) => {
 
         props.setIsLoggedIn(true);
 
-        // const userInfo = await getUserInfo(token.access_token);
-        // console.log('Información del usuario:', userInfo);
+       const userInfo = await getUserInfo(token.access_token);
+        console.log('Información del usuario:', userInfo);
         props.setPagina(1);
       }
     } catch (error) {
