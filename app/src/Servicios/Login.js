@@ -4,7 +4,8 @@ export async function authenticateUser(username, password){
   const uri= 'auth/login';
 
   let user = {
-    user_name: username,
+    // es user_name o username? segun la api?
+    username: username,
     password: password
   }
 

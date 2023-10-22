@@ -21,7 +21,7 @@ const users = [
   },
 ];
 
-const jwt = require('jsonwebtoken');
+
 
 
 app.post('/auth/login', (req, res) => {

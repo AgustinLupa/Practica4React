@@ -1,3 +1,4 @@
+//Esta solo la use para probar diferencia entre axios y fetch, tiene una api gratuita 
 import axios from 'axios';
 
 export async function obtenerUsuariosAxios() {

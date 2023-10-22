@@ -5,12 +5,9 @@ import VerPokemones from '../../Paginas/VerPokemones/VerPokemones';
 import Inicio from '../../Paginas/Inicio/Inicio';
 import Usuarios from '../../Paginas/Usuarios/Usuarios';
 
-
 const TopBar = (props) => {
   const [token, setToken] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
- 
 
   const MENU = [
     // {
@@ -20,23 +17,28 @@ const TopBar = (props) => {
     {
       pagina: <BuscarPokemon />,
       titulo: 'Buscar Pokemon',
+      key: 1,
     },
     {
       pagina: <VerPokemones />,
       titulo: 'Ver Pokemones de Fuego',
+      key: 2,
     },
     {
       pagina: <Usuarios />,
       titulo: 'Usuarios',
+      key: 3,
     },
   ];
 
-  function setPagina(i){
-    props.setPaginaActual(MENU[i].pagina)
+  function setPagina(i) {
+    props.setPaginaActual(MENU[i].pagina);
   }
 
   useEffect(() => {
-    props.setPaginaActual(<Inicio setToken={setToken} setPagina={setPagina} setIsLoggedIn={setIsLoggedIn}  />); // Asegúrate de pasar setToken correctamente
+    props.setPaginaActual(
+      <Inicio setToken={setToken} setPagina={setPagina} setIsLoggedIn={setIsLoggedIn} />
+    ); // Asegúrate de pasar setToken correctamente
   }, []);
 
   return (
@@ -46,19 +48,18 @@ const TopBar = (props) => {
         <div>
           {          
            MENU.map((item, index) =>{ 
-            
               if(isLoggedIn){
-                return(
+                return (
                   <BaseButton
-                    key={index}
+                    key={index} // Clave única basada en el índice  
                     className="btn btn-primary menu-button"
                     text={item.titulo}
                     callBack={props.setPaginaActual}
                     params={item.pagina}
                   />
                 );
-              }else{
-                return(
+              } else {
+                return (
                   <></>
                 );
               }
