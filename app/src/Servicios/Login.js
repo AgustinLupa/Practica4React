@@ -11,6 +11,9 @@ export async function authenticateUser(username, password){
 
   let resp= await POST(uri, user);
 
+  if (resp?.access_token){
+    localStorage.setItem('token', resp.access_token);
+  } 
   return resp;
 }
 

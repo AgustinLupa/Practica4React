@@ -4,6 +4,7 @@ import { getUserInfo } from "../../Servicios/Login";
 import { GETcats } from "../../Servicios/Httpr"; 
 
 const Inicio = (props) => {
+<<<<<<< HEAD
   const [formData, setFormData] = useState({});
   const [loginResult, setLoginResult] = useState();
   const [resultApi, setResultApi] = useState();
@@ -18,6 +19,9 @@ const Inicio = (props) => {
     });
   };
   */
+=======
+  const [formData, setFormData] = useState({}); 
+>>>>>>> aa49b82fa73d06c911e2c9593e16c9a383b98368
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
@@ -34,8 +38,11 @@ const Inicio = (props) => {
 
         props.setIsLoggedIn(true);
 
+<<<<<<< HEAD
        const userInfo = await getUserInfo(loginResult.access_token);
         console.log('Información del usuario:', userInfo);
+=======
+>>>>>>> aa49b82fa73d06c911e2c9593e16c9a383b98368
         props.setPagina(1);
       }else{
         setResultApi(await GETcats())
