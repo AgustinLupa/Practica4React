@@ -10,10 +10,6 @@ const TopBar = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const MENU = [
-    // {
-    //   pagina: <Inicio setToken={setToken} setPagina={setPagina} setIsLoggedIn={setIsLoggedIn} />, // Asegúrate de pasar setToken correctamente
-    //   titulo: 'Inicio',
-    // },
     {
       pagina: <BuscarPokemon />,
       titulo: 'Buscar Pokemon',
@@ -35,10 +31,24 @@ const TopBar = (props) => {
     props.setPaginaActual(MENU[i].pagina);
   }
 
+  function closeSession(){
+    localStorage.clear('token');
+    props.setPaginaActual(<Inicio setToken={setToken} setPagina={setPagina} setIsLoggedIn={setIsLoggedIn} />)
+    window.location.reload(false);
+  }
+
   useEffect(() => {
-    props.setPaginaActual(
-      <Inicio setToken={setToken} setPagina={setPagina} setIsLoggedIn={setIsLoggedIn} />
-    ); // Asegúrate de pasar setToken correctamente
+    let jwt= localStorage.getItem('token');
+    if (jwt){
+      setIsLoggedIn(true);
+      props.setPaginaActual(
+        <VerPokemones />
+      );
+    } else {
+      props.setPaginaActual(
+        <Inicio setToken={setToken} setPagina={setPagina} setIsLoggedIn={setIsLoggedIn} />
+      );
+    }
   }, []);
 
   return (
@@ -46,9 +56,25 @@ const TopBar = (props) => {
       <div className="container-fluid">
         <span className="navbar-brand mb-0 h1">PokeBusca</span>
         <div>
-          {          
-           MENU.map((item, index) =>{ 
-              if(isLoggedIn){
+          { isLoggedIn &&     
+          <>
+            {
+              MENU.map((item, index) =>{ 
+                // if(isLoggedIn){
+                //   return (
+                //     <BaseButton
+                //       key={index} // Clave única basada en el índice  
+                //       className="btn btn-primary menu-button"
+                //       text={item.titulo}
+                //       callBack={props.setPaginaActual}
+                //       params={item.pagina}
+                //     />
+                //   );
+                // } else {
+                //   return (
+                //     <></>
+                //   );
+                // }
                 return (
                   <BaseButton
                     key={index} // Clave única basada en el índice  
@@ -58,12 +84,11 @@ const TopBar = (props) => {
                     params={item.pagina}
                   />
                 );
-              } else {
-                return (
-                  <></>
-                );
-              }
-            })
+              })
+            }
+            <button onClick={closeSession} className='btn btn-danger menu-button'><i class="bi bi-box-arrow-left"></i></button>
+          </>     
+           
           }
         </div>
       </div>

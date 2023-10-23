@@ -3,17 +3,7 @@ import { authenticateUser } from "../../Servicios/Login";
 import { getUserInfo } from "../../Servicios/Login"; 
 
 const Inicio = (props) => {
-  const [formData, setFormData] = useState({});
-
- 
-
-  const HandleOnChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const [formData, setFormData] = useState({}); 
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
@@ -30,8 +20,6 @@ const Inicio = (props) => {
 
         props.setIsLoggedIn(true);
 
-       const userInfo = await getUserInfo(token.access_token);
-        console.log('Información del usuario:', userInfo);
         props.setPagina(1);
       }
     } catch (error) {
