@@ -1,5 +1,5 @@
 //api del profe
-const apiurl = "http://192.168.0.144:3001/api/";
+const apiurl = "http://192.168.0.161:3001/api/";
 //api express (apiusuarios)
 const apiurlexpress = "http://localhost:3001/";
 
