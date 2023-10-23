@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { authenticateUser } from "../../Servicios/Login"; 
 import { getUserInfo } from "../../Servicios/Login";
-import { GETcats } from "../../Servicios/Httpr"; 
+import image from "../../Utils/401.jpg";
 
 const Inicio = (props) => {
   const [formData, setFormData] = useState({});
   const [loginResult, setLoginResult] = useState();
-  const [resultApi, setResultApi] = useState();
+
  
 
   /*
@@ -27,7 +27,7 @@ const Inicio = (props) => {
 
     try {
       setLoginResult (await authenticateUser(formData.user_name, formData.password));
-      //console.log("Token recibido:", token);
+      console.log("Token recibido:", loginResult);
 
 
       if (loginResult?.access_token) {
@@ -39,8 +39,6 @@ const Inicio = (props) => {
         console.log('Información del usuario:', userInfo);
 
         props.setPagina(1);
-      }else{
-        setResultApi(await GETcats())
       }
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
@@ -99,7 +97,7 @@ const Inicio = (props) => {
             <br />
               <div className="card" >
                 <span>
-                  <img src={resultApi} class="card-img-top img-thumbnail" alt="error"/>
+                  <img src={image} class="card-img-top img-thumbnail" alt="error"/>
                 </span>
               </div>
           </div>
