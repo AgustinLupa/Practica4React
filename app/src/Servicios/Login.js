@@ -5,7 +5,7 @@ export async function authenticateUser(username, password){
 
   let user = {
     // es user_name o username? segun la api?
-    username: username,
+    user_name: username,
     password: password
   }
 

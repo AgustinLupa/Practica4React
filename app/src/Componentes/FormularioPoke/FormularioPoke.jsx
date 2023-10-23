@@ -19,7 +19,7 @@ const FormularioPoke = (props)=>{
           setPokeData(data);
           console.log(data);
         } catch (error) {
-          console.error(error.message);
+          console.log(error.message);
         }
       };
     return (
@@ -35,13 +35,10 @@ const FormularioPoke = (props)=>{
                     </div>
                 </div>
                 <div class="col-12">
-                    <button text={props.text} callback={handleBuscarPokemon} params={NombrePoke} type='submit' className="btn btn-primary button">Buscar pokemon</button>
+                    <button text={props.text} type='submit' className="btn btn-primary button">Buscar pokemon</button>
                 </div>
             </form>
-            {pokeData && (
-
-                
-                
+            {pokeData && (                                
                 <div className='row'>
                     <div className='col-sm-6 mb-3 mb-sm-0 offset-3' >
                     <br />
@@ -57,7 +54,6 @@ const FormularioPoke = (props)=>{
                                         <p class="card-text">{pokeData.base_experience}</p>
                                     <h6 class="card-subtitle mb-2 text-body-secondary">Altura</h6>
                                         <p class="card-text">{pokeData.height}</p>
-
                                     <h6 class="card-subtitle mb-2 text-body-secondary">Estadísticas</h6>
                                     <span>                                  
                                         <ul class="list-group"> 

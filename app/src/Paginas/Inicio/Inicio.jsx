@@ -3,10 +3,7 @@ import { authenticateUser } from "../../Servicios/Login";
 import { getUserInfo } from "../../Servicios/Login"; 
 
 const Inicio = (props) => {
-  const [formData, setFormData] = useState({
-    user_name: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({});
 
  
 
@@ -26,6 +23,7 @@ const Inicio = (props) => {
     try {
       const token = await authenticateUser(formData.user_name, formData.password);
       console.log("Token recibido:", token);
+
 
       if (token) {
         props.setToken(token);
@@ -59,12 +57,10 @@ const Inicio = (props) => {
               </label>
               <div className="col-sm-10">
                 <input
-                  onChange={HandleOnChange}
+                  onChange={e => setFormData({...formData, user_name: e.target.value})}
                   type="text"
                   className="form-control"
                   id="user_name"
-                  name="user_name"
-                  value={formData.user_name}
                 />
               </div>
             </div>
@@ -74,12 +70,10 @@ const Inicio = (props) => {
               </label>
               <div className="col-sm-10">
                 <input
-                  onChange={HandleOnChange}
+                   onChange={e => setFormData({...formData, password: e.target.value})}
                   type="password"
                   className="form-control"
                   id="inputPassword3"
-                  name="password"
-                  value={formData.password}
                 />
               </div>
             </div>
