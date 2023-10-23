@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { authenticateUser } from "../../Servicios/Login"; 
-import { getUserInfo } from "../../Servicios/Login";
 import image from "../../Utils/401.jpg";
 
 const Inicio = (props) => {
   const [formData, setFormData] = useState({});
   const [loginResult, setLoginResult] = useState();
-
- 
 
   /*
   const HandleOnChange = (e) => {
