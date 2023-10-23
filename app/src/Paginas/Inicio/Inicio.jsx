@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { authenticateUser } from "../../Servicios/Login"; 
-import { getUserInfo } from "../../Servicios/Login"; 
+import { getUserInfo } from "../../Servicios/Login";
+import { GETcats } from "../../Servicios/Httpr"; 
 
 const Inicio = (props) => {
   const [formData, setFormData] = useState({});
-
+  const [loginResult, setLoginResult] = useState();
+  const [resultApi, setResultApi] = useState();
  
 
+  /*
   const HandleOnChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -14,25 +17,28 @@ const Inicio = (props) => {
       [name]: value,
     });
   };
+  */
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Iniciar Sesión clickeado");
-    console.log("Credenciales:", formData.user_name, formData.password);
+    //console.log("Iniciar Sesión clickeado");
+    //console.log("Credenciales:", formData.user_name, formData.password);
 
     try {
-      const token = await authenticateUser(formData.user_name, formData.password);
-      console.log("Token recibido:", token);
+      setLoginResult (await authenticateUser(formData.user_name, formData.password));
+      //console.log("Token recibido:", token);
 
 
-      if (token) {
-        props.setToken(token);
+      if (loginResult?.access_token) {
+        props.setToken(loginResult);
 
         props.setIsLoggedIn(true);
 
-       const userInfo = await getUserInfo(token.access_token);
+       const userInfo = await getUserInfo(loginResult.access_token);
         console.log('Información del usuario:', userInfo);
         props.setPagina(1);
+      }else{
+        setResultApi(await GETcats())
       }
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
@@ -85,6 +91,19 @@ const Inicio = (props) => {
           </form>
         </div>
       </div>
+      {loginResult?.error && (
+        <div className='row'>
+          <div className='col-sm-6 mb-3 mb-sm-0 offset-3' >
+            <br />
+              <div className="card" >
+                <span>
+                  <img src={resultApi} class="card-img-top img-thumbnail" alt="error"/>
+                </span>
+              </div>
+          </div>
+        </div>
+      )
+      }
     </>
   );
 };
