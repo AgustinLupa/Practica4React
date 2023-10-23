@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { authenticateUser } from "../../Servicios/Login"; 
-import { getUserInfo } from "../../Servicios/Login";
 import image from "../../Utils/401.jpg";
 
 const Inicio = (props) => {
   const [formData, setFormData] = useState({});
   const [loginResult, setLoginResult] = useState();
-
- 
 
   /*
   const HandleOnChange = (e) => {
@@ -26,17 +23,17 @@ const Inicio = (props) => {
     //console.log("Credenciales:", formData.user_name, formData.password);
 
     try {
-      setLoginResult (await authenticateUser(formData.user_name, formData.password));
-      console.log("Token recibido:", loginResult);
+
+      let rsp = await authenticateUser(formData.user_name, formData.password);
+      console.log("Token recibido:", rsp);
+
+      setLoginResult(rsp); //esta mal, pero no tan mal (doble verdad,)
 
 
-      if (loginResult?.access_token) {
-        props.setToken(loginResult);
+      if (rsp?.access_token) {
+        props.setToken(rsp);
 
         props.setIsLoggedIn(true);
-
-       const userInfo = await getUserInfo(loginResult.access_token);
-        console.log('Información del usuario:', userInfo);
 
         props.setPagina(1);
       }
