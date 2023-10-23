@@ -60,7 +60,7 @@ const Usuarios = () => {
               type="text"
               id="username"
               value={nuevoUsuario.username} // Adaptar a la propiedad 'username' de la API
-              onChange={(e) => setNuevoUsuario({ ...nuevoUsuario, username: e.target.value })} // Adaptar a 'username'
+              onChange={(e) => setNuevoUsuario({ ...nuevoUsuario, user_name: e.target.value })} // Adaptar a 'username'
             />
           </label>
         </div>

@@ -10,7 +10,7 @@ export async function GET(url, request= null, token){
         uri= '?' + new URLSearchParams(request).toString();
     }
 
-    return await fetch(apiurlexpress + url + uri, {
+    return await fetch(apiurl + url + uri, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -24,7 +24,7 @@ export async function GET(url, request= null, token){
 
 export async function POST(url, request, token= ''){
 
-    return await fetch (apiurlexpress + url, {
+    return await fetch (apiurl + url, {
         method: 'POST',
         mode: 'cors',
         headers: {
