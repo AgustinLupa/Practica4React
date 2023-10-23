@@ -28,8 +28,6 @@ const Inicio = (props) => {
       console.log("Token recibido:", rsp);
 
       setLoginResult(rsp); //esta mal, pero no tan mal (doble verdad,)
-
-
       if (rsp?.access_token) {
         props.setToken(rsp);
 
