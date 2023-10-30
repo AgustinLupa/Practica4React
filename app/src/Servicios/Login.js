@@ -17,10 +17,10 @@ export async function authenticateUser(username, password){
   return resp;
 }
 
-export async function getUserInfo(token){
+export async function getUserInfo(){
   const uri= 'auth/me';
 
-  let resp= await GET(uri, '', token);
+  let resp= await GET(uri, '');
 
   return resp;
 }

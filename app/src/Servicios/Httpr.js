@@ -6,7 +6,7 @@ const apiurlexpress = "http://localhost:3001/";
 
 const apicats = "https://http.cat/";
 
-export async function GET(url, request= null, token){
+export async function GET(url, request= null){
     
     let uri= "";
     if (request){
@@ -17,7 +17,7 @@ export async function GET(url, request= null, token){
         method: 'GET',
         mode: 'cors',
         headers: {
-            'Authorization': `Bearer ${token}` || ''
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || ''
         }
     })
     .then((res) => res.json())
@@ -25,14 +25,14 @@ export async function GET(url, request= null, token){
     .catch((err) => err);
 }
 
-export async function POST(url, request, token= ''){
+export async function POST(url, request){
 
     return await fetch (apiurl + url, {
         method: 'POST',
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` || ''
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || ''
         },
         body: JSON.stringify(request)
     })
