@@ -41,3 +41,18 @@ export async function POST(url, request){
     .catch((err) => err);
 
 }
+
+export async function PUT(url, request){
+    return await fetch (apiurl + url, {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || ''
+        },
+        body: JSON.stringify(request)
+    })
+    .then((res) => res.json())
+    .then((res) => res)
+    .catch((err) => err);
+}
