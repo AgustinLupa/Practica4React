@@ -21,7 +21,7 @@ const FormularioPoke = (props)=>{
         } catch (error) {
           console.log(error.message);
         }
-      };
+      };      
     return (
         <div>       
             <form class="row row-cols-lg-auto g-3 offset-4" onSubmit={(e)=> {
